@@ -1,24 +1,39 @@
 # How to setup test HTTPS (TLS) environment on macOS
 
 ## Overview
-TODO
+When we need to test apps communicating to a server over HTTPS, Apple [recommends](https://developer.apple.com/library/content/qa/qa1948/_index.html) the following aproach:
 
-## Reverse-proxy NGINX installation
-TODO
+1. Create your own CA for testing
+2. Use that CA to create a digital identity for your server
+3. Install that CA’s root certificate on your test devices
 
-## Test Certificate Authority
+## Creating Your Own Test Certificate Authority
 ### Creating a Certificate Authority
 ```bash
 .\create-ca.sh
 ```
-### Adding the Certificate Authority to the Keychain
-TODO
 
 ### Issuing a Digital Identity
 ```bash
 .\issue-di.sh localhost
 ```
-## NGINX TSL/HTTPS settings
+
+## Server Settings
+### NGINX installation
+### NGINX TSL/HTTPS settings
+TODO
+
+
+## Installing CA root certificate on Test Device
+### macOS
+To install a CA’s root certificate on macOS, use the Keychain Access utility to add the root certificate (ca.cer) to the System keychain and then explicitly mark it as trusted.
+
+### iOS Simulator
+The quickest way to install a CA’s root certificate on the simulator is to drag the root certificate to the main simulator window. This will kick off the install process.
+
+When CA's root certificate is completed you must specifically enable the root certificate in Settings > General > About > Certificate Trust Settings.
+
+### Android Emulator
 TODO
 
 ## References
